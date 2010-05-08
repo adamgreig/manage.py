@@ -1,0 +1,11 @@
+manage.py
+manage various server things
+Adam Greig, May 2010
+
+Usage: check settings.py for API keys, IPs, directories, et cetera
+then just python manage.py, give it a domain name, let rip
+
+Features: currently, use linode api for adding and deleting dns zones
+and records, with a list of dns records to add for google mail,
+google apps, google chat
+
