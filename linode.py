@@ -100,6 +100,29 @@ def add_dns_records(domain, records):
             print err
     print 'Records added.'
 
+def add_dns_custom(domain):
+    domain_id = get_domain_id(domain)
+    if domain_id == 0:
+        return
+
+    Type = raw_input("Type: ")
+    Name = raw_input("Name: ")
+    Target = raw_input("Target: ")
+    Priority = raw_input("Priority: ")
+    try:
+        Priority = int(Priority)
+    except ValueError:
+        Priority = 0
+    
+    try:
+        linode.domain_resource_create(DomainID=domain_id, Type=Type,
+                Name=Name, Target=Target, Priority=Priority, TTL_sec=dns_ttl)
+    except api.ApiError as err:
+        print 'Error adding record:',
+        print err
+    else:
+        print 'Record added.'
+
 def delete_dns_records(domain):
     conf = 'Are you sure you wish to delete all DNS records for this domain?'
     conf = raw_input(conf + ' y/N: ')
@@ -164,6 +187,7 @@ def add_dns_records_menu(domain):
                '2': 'Add Google Mail DNS entries (cname, txt, mx)',
                '3': 'Add Google Apps DNS entries (cname)',
                '4': 'Add Google Chat DNS entries (SRV)',
+               '5': 'Add custom DNS entry',
                'b': 'Back'}
 
     while 1:
@@ -176,6 +200,8 @@ def add_dns_records_menu(domain):
             add_dns_records(domain, dns_google_apps)
         elif choice == '4':
             add_dns_records(domain, dns_google_chat)
+        elif choice == '5':
+            add_dns_custom(domain)
         elif choice == 'b':
             return
 
