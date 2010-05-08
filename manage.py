@@ -1,15 +1,18 @@
+#!/usr/bin/python
 ### Manage various server features
 ### Adam Greig, May 2010
 
 import sys
-import linode
+import linode, system
 from menu import menu
 
 def main_menu(domain):
-    options = {'1': 'Linode API', 'q': 'Quit'}
+    options = {'1': 'Linode API', '2': 'System', 'q': 'Quit'}
     choice = menu('Main Menu:', domain, options)
     if choice == '1':
         linode.linode_menu(domain)
+    elif choice == '2':
+        system.system_menu(domain)
     elif choice == 'q':
         sys.exit(0)
 
