@@ -11,3 +11,8 @@ system_useradd = '/usr/sbin/useradd'
 system_userdel = '/usr/sbin/userdel'
 system_rm = '/bin/rm'
 
+cherokee_simple_vhost_dir = '/home/www/default/vhosts/'
+cherokee_vhost_dir = '/home/www/'
+cherokee_mkdir = '/bin/mkdir'
+cherokee_rm = '/bin/rm'
+
