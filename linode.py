@@ -173,12 +173,12 @@ def delete_dns_domain(domain):
         return
 
     try:
-        result = linode.domain_delete(DomainID=domain['DOMAINID'])
+        result = linode.domain_delete(DomainID=domain_id)
     except api.ApiError as err:
         print 'Error deleting domain:',
         print err
     else:
-        print 'Domain ' + str(domain['DOMAINID']) + ' deleted.'
+        print 'Domain ' + str(domain_id) + ' deleted.'
         return
 
 
